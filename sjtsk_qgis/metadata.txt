@@ -1,0 +1,19 @@
+[general]
+name=S-JTSK Official Transformation
+qgisMinimumVersion=3.34
+description=Slovak S-JTSK (JTSK, JTSK03) ↔ ETRS89 / WGS 84 transformations the official ÚGKK way, with the GKÚ grid included.
+about=Depending on the installation, QGIS/PROJ may transform ETRS89 and WGS 84 data to S-JTSK by different operations (up to 1.36 m apart in Slovakia) and may treat JTSK03 data (ZBGIS, DMR5) as JTSK (cadastre), although they differ by up to 1.64 m. This plugin transforms vector layers between S-JTSK [JTSK] (EPSG:5514, 5513, 2065), S-JTSK [JTSK03] (EPSG:8353, 8352) and ETRS89 / WGS 84 with the official transformation of the Slovak Office of Geodesy, Cartography and Cadastre (Helmert EPSG 8365/8367 and the GKÚ grid EPSG 8364, included, © GKÚ Bratislava, CC BY 4.0) — identical to PROJ with the official grid to below 0.01 mm, independent of the grids installed in QGIS. It can also install the grid into your QGIS profile and make the official transformation the preferred one, so that QGIS's own reprojection is correct too. Pure Python, no extra dependencies. Developed with an AI assistant under the direction of the author; method, measurements on 3,978 points, tests and AI disclosure in the repository. (Slovensky: oficiálny prevod ÚGKK medzi S-JTSK, JTSK03 a ETRS89.)
+version=0.1.1
+author=Šimon Saloň, Milan Koreň, František Chudý, Julián Tomaštík, Miroslav Kardoš
+email=simon.salon@tuzvo.sk
+homepage=https://github.com/SimonSalon25/sjtsk
+tracker=https://github.com/SimonSalon25/qgis-plugins/issues
+repository=https://github.com/SimonSalon25/qgis-plugins
+tags=slovakia,s-jtsk,jtsk03,etrs89,krovak,coordinate transformation,cadastre,geodesy
+category=Vector
+icon=icon.svg
+experimental=True
+deprecated=False
+hasProcessingProvider=yes
+changelog=0.1.1 'Install the GKÚ grid' also sets the official transformation as preferred in QGIS (ETRS89 / WGS 84 → JTSK, JTSK03 → JTSK); without it QGIS 3.44 used the Czech parameters (up to 3.6 m off in Slovakia).
+  0.1.0 first version
