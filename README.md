@@ -1,5 +1,7 @@
 # QGIS plugins: Esri Tile Cache Converter, S-JTSK Official Transformation
 
+[![DOI](https://zenodo.org/badge/1468812803.svg)](https://doi.org/10.5281/zenodo.24477771)
+
 Two QGIS plugins (Processing providers) built on the open libraries
 [esri-tilecache](https://github.com/SimonSalon25/esri-tilecache) and [sjtsk](https://github.com/SimonSalon25/sjtsk).
 
