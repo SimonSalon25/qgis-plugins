@@ -3,7 +3,7 @@ name=Esri Tile Cache Converter
 qgisMinimumVersion=3.34
 description=Convert Esri tile caches (.tpk incl. Compact V1, .tpkx, cache folders, LERC elevation, .vtpk) to GeoPackage and MBTiles without re-encoding tiles.
 about=GDAL cannot read the older Compact V1 tile packages (.tpk) still used by some national mapping agencies. This plugin converts Esri tile caches to open formats: image tiles are copied byte for byte into a GeoPackage (no quality loss, all levels kept, fast multi-threaded overviews); LERC elevation caches become a float32 2D gridded coverage; vector tile packages (.vtpk, Web Mercator) become MBTiles. Damaged and invalid tiles are skipped and reported. Processing algorithms in the "Esri tile cache" provider. Dependencies: numpy and Pillow (included with QGIS) for overviews; the optional Python package "lerc" for LERC elevation caches. Developed with an AI assistant under the direction of the author; method, tests and AI disclosure in the repository.
-version=0.1.1
+version=0.1.2
 author=Šimon Saloň, Milan Koreň, František Chudý, Julián Tomaštík, Miroslav Kardoš
 email=simon.salon@tuzvo.sk
 homepage=https://github.com/SimonSalon25/esri-tilecache
@@ -15,5 +15,6 @@ icon=icon.svg
 experimental=True
 deprecated=False
 hasProcessingProvider=yes
-changelog=0.1.1 Bundled esri-tilecache 0.1.1 (documentation only, conversion unchanged).
+changelog=0.1.2 Code hardening for the plugin repository security scan: SQL table names quoted, no silently ignored errors. Conversion unchanged.
+  0.1.1 Bundled esri-tilecache 0.1.1 (documentation only, conversion unchanged).
   0.1.0 first version
