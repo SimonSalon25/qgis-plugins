@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use these QGIS plugins, please cite them as below."
 title: "QGIS plugins: Esri Tile Cache Converter and S-JTSK Official Transformation"
-version: 0.1.0
-date-released: 2026-11-23
+version: 0.1.1
+date-released: 2026-11-24
 doi: 10.5281/zenodo.24477771
 license: GPL-2.0-or-later
 repository-code: "https://github.com/SimonSalon25/qgis-plugins"

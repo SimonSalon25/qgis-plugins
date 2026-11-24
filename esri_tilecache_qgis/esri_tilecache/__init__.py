@@ -17,7 +17,7 @@ from .overviews import (OVERVIEW_FORMAT, OVERVIEW_QUALITY, build_overviews, dele
                         overview_factors, source_zoom)
 from .reader import Cache, Cancelled, TileCacheError, bundle_occupancy, bundle_tiles, open_cache
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = ["Cache", "Cancelled", "TileCacheError", "open_cache", "bundle_tiles", "bundle_occupancy",
            "to_geopackage", "level_chain", "tile_matrix", "is_valid_image", "to_mbtiles", "mvt_layers",

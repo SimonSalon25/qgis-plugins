@@ -143,10 +143,11 @@ class InstallGrid(QgsProcessingAlgorithm):
                 "PROJ folder of your QGIS profile and sets the official transformation as the preferred one for "
                 "ETRS89 / WGS 84 → S-JTSK [JTSK] and S-JTSK [JTSK03] → [JTSK] (Settings → Options → Transformations, "
                 "for new projects, and in the current project). After restarting QGIS, its own reprojection uses "
-                "the official ÚGKK transformation.\n\n"
+                "the official ÚGKK transformation. To undo, remove the three entries in Settings → Options → "
+                "Transformations.\n\n"
                 "Why: without a preference QGIS picks by itself. Tested in QGIS 3.44 (PROJ 9.8): for ETRS89 → "
                 "EPSG:5514 it ranks the Czech ČÚZK grid first and, without it, falls back to 'S-JTSK to ETRS89 (1)' "
-                "(Czech parameters) — 0.5 m in western and 3.6 m in eastern Slovakia. Installing the grid alone does "
+                "(Czech parameters) — up to 4.2 m off in Slovakia, most in the east. Installing the grid alone does "
                 "not change that choice.")
 
     def createInstance(self):

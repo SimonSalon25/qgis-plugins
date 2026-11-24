@@ -11,14 +11,16 @@ Two QGIS plugins (Processing providers) built on the open libraries
 (e.g. national forest maps) cannot be opened; (2) the official ÚGKK transformation between S-JTSK
 [JTSK], S-JTSK [JTSK03] and ETRS89 / WGS 84 is not applied reliably.
 
-**State as of 23 November 2026** (QGIS 3.44.12, PROJ 9.8.1, GDAL 3.13.1, Windows): GDAL does not read Compact V1;
-QGIS transforms ETRS89 → EPSG:5514 with the Czech parameters "S-JTSK to ETRS89 (1)", 0.5–3.6 m off the official
-result across Slovakia, and installing the official GKÚ grid alone does not change that.
+**State as of 23 November 2026** (QGIS 3.44.12, PROJ 9.8.1, GDAL 3.13.1, Windows): GDAL does not read Compact V1 (and the open-source tpkutils reads it only in Web Mercator);
+QGIS transforms ETRS89 → EPSG:5514 with the Czech parameters "S-JTSK to ETRS89 (1)", up to 4.2 m off the
+official ÚGKK chain in Slovakia (mean 1.9 m; confirmed in QGIS on 12 test points), and installing the official GKÚ grid alone does not change that.
 
 **Solution.** *Esri Tile Cache Converter* converts Esri tile caches (incl. Compact V1) to GeoPackage / MBTiles
 without re-encoding. *S-JTSK Official Transformation* transforms vector layers by the official ÚGKK chain
-(independently of the PROJ installation; 0.6 mm on 12 control points) and makes it QGIS's preferred transformation,
-so QGIS's own reprojection gives the official result too.
+(independently of the PROJ installation; equal to PROJ with the official grid to below 0.1 mm) and, on request,
+makes it QGIS's preferred transformation, so QGIS's own reprojection follows it too. Checked against the binding
+RTS service of ÚGKK on 56 points: agrees to 6 mm (a constant 5.3 mm in the Helmert step, the grid step equal), while
+QGIS's default is up to 4.1 m off RTS (see the [sjtsk methodology](https://github.com/SimonSalon25/sjtsk/blob/main/METHODOLOGY.md), section 5.1).
 
 **Aim.** Correct, reproducible work with Slovak national data in open software — for forestry, cadastre and field
 surveys — with an open methodology.
@@ -29,6 +31,9 @@ surveys — with an open methodology.
 | **S-JTSK Official Transformation** (`sjtsk_qgis`) | *Transform layer (official ÚGKK S-JTSK ↔ ETRS89)*; *Install the GKÚ grid into QGIS* | users of Slovak data (cadastre in JTSK, ZBGIS / DMR5 in JTSK03, GNSS in ETRS89 / WGS 84) |
 
 - No binaries; the libraries are bundled as plain Python (MIT), the GKÚ grid as data (© GKÚ Bratislava, CC BY 4.0).
+- *Install the GKÚ grid* changes QGIS settings: it copies the grid into the `proj` folder of your QGIS profile and
+  adds three preferred transformations (Settings → Options → Transformations, and the current project). Remove
+  them there to undo.
 - Requirements: QGIS 3.34 or newer. The tile converter uses numpy and Pillow shipped with QGIS for fast overviews
   (without Pillow it falls back to GDAL); LERC elevation caches need the optional Python package `lerc`.
 - Open methodology: METHODOLOGY.md in each library repository; how AI was used: AI_DISCLOSURE.md there.
