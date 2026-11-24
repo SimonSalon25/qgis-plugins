@@ -85,14 +85,14 @@ def crs_definition(epsg: int | None, wkt: str | None) -> tuple[str, str]:
             crs = CRS.from_epsg(epsg)
             return crs.name, crs.to_wkt("WKT1_GDAL")
         except Exception:  # noqa: BLE001 — pyproj missing or unknown code
-            pass
+            logger.debug("pyproj has no CRS for EPSG:%s", epsg, exc_info=True)
         try:
             from osgeo import osr
             s = osr.SpatialReference()
             if s.ImportFromEPSG(int(epsg)) == 0:
                 return s.GetName() or f"EPSG:{epsg}", s.ExportToWkt()
         except Exception:  # noqa: BLE001 — GDAL missing (QGIS always has it)
-            pass
+            logger.debug("GDAL has no CRS for EPSG:%s", epsg, exc_info=True)
     return ("Esri cache", wkt) if wkt else ("Undefined", "undefined")
 
 
